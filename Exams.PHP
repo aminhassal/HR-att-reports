@@ -71,10 +71,10 @@
                               <li class="nav-item">
                                  <a class="nav-link" href="register.php">تسجيل طالب</a>
                               </li>
-                              <li class="nav-item active">
+                              <li class="nav-item">
                                  <a class="nav-link" href="lecture.php">محاضرات</a>
                               </li>
-                              <li class="nav-item">
+                              <li class="nav-item active">
                                  <a class="nav-link" href="Exams.php">امتحانات</a>
                               </li>
                               <li class="nav-item">
@@ -108,7 +108,7 @@
          <div class="row">
             <div class="col-md-12">
                <div class="title">
-                  <h2>محاضرات</h2>
+                  <h2>امتحانات</h2>
                </div>
             </div>
          </div>
