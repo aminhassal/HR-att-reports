@@ -115,11 +115,7 @@ html {
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h4>بيانات طالب
-                            <a href="student-create.php" class="btn btn-dark float-end">تسجيل طالب</a>
-                        </h4>
-                    </div>
+
                     <div class="card-body">
 
                         <table class="table table-bordered table-striped">
