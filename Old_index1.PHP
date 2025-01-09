@@ -76,6 +76,9 @@
                                  <a class="nav-link" href="./Reports/Reports_.php">تقارير</a>
                               </li>
                               <li class="nav-item">
+                                 <a class="nav-link" href="./HR1/exams.php">إمتحانات</a>
+                              </li>
+                              <li class="nav-item">
                                  <a class="nav-link" href="login.php"> تسجيل خروج</a>
                                </li>
                               
@@ -83,7 +86,7 @@
                         </div>
                      </nav>
                   </div>
-                  <div class="col-md-2">
+                  <!-- <div class="col-md-2">
                      <ul class="social_icon">
                         <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                         <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
@@ -93,7 +96,7 @@
                   </div>
                </div>
             </div>
-         </div>
+         </div> -->
       </header>
       <!-- end header inner -->
       <!-- end header -->

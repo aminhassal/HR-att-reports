@@ -73,43 +73,27 @@ html {
                         </button>
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
-                              <li class="nav-item">
-                                 <a class="nav-link" href="Old_index1.php">الرئسية</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="about.php">حول</a>
-                              </li>
+                            
                               <li class="nav-item active">
                                  <a class="nav-link" href="register.php">تسجيل طالب</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="lecture.php">محاضرات</a>
+                                 <a class="nav-link" href="exams.php">إمتحانات</a>
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="./Reports/Reports_.php">تقارير</a>
                               </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="./HR1/exams.php">إمتحانات</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="login.php"> تسجيل خروج</a>
+                                 <a class="nav-link" href="../Old_index1.php"> السابق</a>
                                </li>
+                              
                               
                            </ul>
                         </div>
                      </nav>
                   </div>
-                  <div class="col-md-2">
-                     <ul class="social_icon">
-                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-         </div>
+                  
     </header>
     <div class="back_re">
         <div class="container">

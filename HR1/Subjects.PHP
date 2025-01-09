@@ -67,15 +67,11 @@
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                             <div class="collapse navbar-collapse mr-5 pr-3" id="navbarsExample04">
-                                <ul class="navbar-nav mr-auto">
-                                    
+                              
                             </div>
                         </nav>
                     </div>
                     
-                </div>
-            </div>
-        </div>
     </header>
     <!-- end header inner -->
     <!-- end header -->
@@ -99,7 +95,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h4>
-                            <a href="lecture.PHP" class="btn btn-danger"> &#8594; رجوع</a>
+                            <a href="exams.PHP" class="btn btn-danger"> &#8594; رجوع</a>
                         </h4>
                     </div>
                     <div class="card-body">
