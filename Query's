@@ -1,0 +1,13 @@
+CREATE VIEW StudentRecords select 
+`hrr`.`infostd`.`Uid` AS `Uid`,
+`hrr`.`infostd`.`Name` AS `Name`,
+`hrr`.`infostd`.`InRollNumber` AS `InRollNumber`,
+`hrr`.`courses`.`CourseiID`AS `CourseiID`,
+`hrr`.`courses`.`OpenDate`AS `OpenDate`,
+`hrr`.`records`.`RecordID_PK`AS `RecordID_PK`,
+`hrr`.`records`.`RecordDate`AS `RecordDate`,
+`hrr`.`class`.`ClassID`AS `ClassID`
+from (((
+`hrr`.`class` join `hrr`.`subjects` 
+    on(`hrr`.`infostd` on(`hrr`.`studentclass`.`StdUid_FK` = `hrr`.`infostd`.`Uid`))
+      join `hrr`.`studentclass` on(`hrr`.`class`.`ClassID` = `hrr`.`studentclass`.`ClassID`))
