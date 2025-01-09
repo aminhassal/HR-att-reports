@@ -6,8 +6,9 @@ if($_POST)
     $password=$_POST['password'];
     $sUser=mysqli_real_escape_string($con,$username);
     $sPass=mysqli_real_escape_string($con,$password);
+    
     // For Security 
-    $query="SELECT * From Admins where userName='$sUser' and password='$sPass'";
+    $query="SELECT * FROM Admins WHERE userName='$sUser' AND password='$sPass'";
     $result=mysqli_query($con,$query);
     if(mysqli_num_rows($result)==1)
     {
@@ -22,36 +23,34 @@ if($_POST)
 <head>
   <meta charset="UTF-8">
   <title>الحضور والانصراف</title>
-  <link rel='stylesheet' href='//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'><link rel="stylesheet" href="./style.css">
-
+  <link rel='stylesheet' href='//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body id="login_i">
-<!-- partial:index.partial.html -->
 
 <div class='login'>
   <div class='login_title'>
     <span>تسجيل الدخول</span>
     <form method="POST">
-    <div class='ico'>
-      <img src='lock_icon_copy.png'>
-    </div>
+      <div class='ico'>
+        <img src='lock_icon_copy.png'>
+      </div>
   </div>
   <div class='login_fields'>
     <div class='login_fields__user'>
       <div class='icon'>
         <img src='user_icon_copy.png'>
       </div>
-      <input placeholder='Username' type='text' name='Username'>
-        <div class='validation'>
-          <img src='tick.png'>
-        </div>
-      </input>
+      <input placeholder='اسم المستخدم' type='text' name='Username' required>
+      <div class='validation'>
+        <img src='tick.png'>
+      </div>
     </div>
     <div class='login_fields__password'>
       <div class='icon'>
         <img src='lock_icon_copy.png'>
       </div>
-      <input placeholder='Password' type='password' name='password'>
+      <input placeholder='كلمة المرور' type='password' name='password' required>
       <div class='validation'>
         <img src='tick.png'>
       </div>
@@ -59,15 +58,16 @@ if($_POST)
     <div class='login_fields__submit'>
       <input type='submit' value='تسجيل الدخول'>
       <div class='forgot'>
-      </form>
-        <a href='#'> هل نسيت كلمة المرور?</a>
+        </form>
+        <a href='signin.php'> إنشاء حساب جديد </a>
       </div>
     </div>
   </div>
-<!-- partial -->
-  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src='//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script><script  src="./script.js"></script>
+</div>
+
+<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+<script src="./script.js"></script>
 
 </body>
 </html>
-

@@ -118,9 +118,9 @@ body .login {
     transform-origin: 161px 100%;
     transform: rotateX(0deg);
     position: relative;
-    width: 240px;
+    width: 340px;
     border-top: 2px solid #79dada;
-    height: 300px;
+    height: 320px;
     position: absolute;
     left: 0;
     right: 0;
@@ -197,7 +197,7 @@ body .login_fields input[type=password] {
     margin-top: -2px;
     background: #32364a;
     left: 0;
-    padding: 10px 65px;
+    padding: 20px 115px;
     border-top: 2px solid #393d52;
     border-bottom: 2px solid #393d52;
     border-right: none;
@@ -220,10 +220,24 @@ body .login_fields__submit {
     right: 0;
     margin: auto;
 }
+body .login_fields__submitto {
+    position: relative;
+    top: 35px;
+    left: 0;
+    width: 80%;
+    right: 0;
+    margin: auto;
+}
 
 body .login_fields__submit .forgot {
     float: right;
-    font-size: 10px;
+    font-size: 20px;
+    margin-top: 11px;
+    text-decoration: underline;
+}
+body .login_fields__submitto .forgot {
+    float: right;
+    font-size: 14px;
     margin-top: 11px;
     text-decoration: underline;
 }
@@ -231,15 +245,42 @@ body .login_fields__submit .forgot {
 body .login_fields__submit .forgot a {
     color: #e4e4ec;
 }
+body .login_fields__submitto .forgot a {
+    color: #e4e4ec;
+}
 
 body .login_fields__submit input {
     border-radius: 50px;
     background: transparent;
     padding: 10px 50px;
-    border: 2px solid #60dfe4;
-    color: #3dd8ff;
+    border: 2px solid #28e010;
+    color: #28e010;
+    text-transform: uppercase;
+    font-size: 20px;
+    transition-property: background, color;
+    transition-duration: 0.2s;
+    font-family: Calibri Light;
+}
+body .login_fields__submitto input {
+    border-radius: 50px;
+    background: transparent;
+    padding: 10px 50px;
+    border: 2px solid #28e010;
+    color: #28e010;
     text-transform: uppercase;
     font-size: 11px;
+    transition-property: background, color;
+    transition-duration: 0.2s;
+    font-family: Calibri Light;
+}
+body .login_fields__submitto input {
+    border-radius: 50px;
+    background: transparent;
+    padding: 10px 50px;
+    border: 2px solid #e35a11;
+    color: #ff673d;
+    text-transform: uppercase;
+    font-size: 20px;
     transition-property: background, color;
     transition-duration: 0.2s;
     font-family: Calibri Light;
@@ -249,10 +290,21 @@ body .login_fields__submit input:focus {
     box-shadow: none;
     outline: none;
 }
+body .login_fields__submitto input:focus {
+    box-shadow: none;
+    outline: none;
+}
 
 body .login_fields__submit input:hover {
     color: white;
-    background: #4fdcff;
+    background: #a72a00;
+    cursor: pointer;
+    transition-property: background, color;
+    transition-duration: 0.2s;
+}
+body .login_fields__submitto input:hover {
+    color: white;
+    background: #b70404;
     cursor: pointer;
     transition-property: background, color;
     transition-duration: 0.2s;
