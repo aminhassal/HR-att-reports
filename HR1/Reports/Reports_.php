@@ -151,7 +151,6 @@ while ($row = mysqli_fetch_assoc($result)) {
         <tr>
             <th>الرقم</th>
             <th>إسم الطالب</th>
-            <th>حالة البصمة</th>
             <th>تاريخ البصمة</th>
             <th>وقت البصمة</th>
             <th>اسم المادة</th>
@@ -162,7 +161,6 @@ while ($row = mysqli_fetch_assoc($result)) {
         <tr>
             <td><?php echo htmlspecialchars($row['InRollNumber']); ?></td>
             <td><?php echo htmlspecialchars($row['Name']); ?></td>
-            <td><?php echo htmlspecialchars($row['RecordStatus']); ?></td>
             <td><?php echo htmlspecialchars($row['RecordDate']); ?></td>
             <td><?php echo htmlspecialchars($row['RecordTime']); ?></td>
             <td><?php echo htmlspecialchars($row['SubjectName']); ?></td>
