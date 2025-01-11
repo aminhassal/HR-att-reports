@@ -19,7 +19,13 @@ $end_date = isset($_POST['end_date']) ? $_POST['end_date'] : '';
 $subject_name = isset($_POST['subject_name']) ? $_POST['subject_name'] : ''; // تغيير هنا
 
 // Prepare SQL query with filters
-$query = 'SELECT * FROM `student_records` WHERE 1=1';
+$query = "SELECT `StudentClassID`, `Uid`, `Name`, `InRollNumber`, `Date`, `RecordStatus`, `ClassID`, `classname`, `subjectname`, `RecordDate`, `RecordTime`
+,CASE 
+ WHEN RecordStatus IS NOT NULL
+  THEN ' حاضر'
+  ELSE ' X غائب' END AS AttendanceStatus
+  FROM `reportview`
+  WHERE 1=1 ";
 $params = [];
 
 // Add conditions if dates are provided
@@ -115,7 +121,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 </head>
 
 <body>
-<h1 align='right'>تقرير الحضور والانصراف</h1>
+<h1 align='right'>تقرير الحضور </h1>
 
 <form method='post'>
     <div class='card-header' style='display: flex; align-items: center; gap: 10px;'>
@@ -149,11 +155,13 @@ while ($row = mysqli_fetch_assoc($result)) {
 <table>
     <thead>
         <tr>
-            <th>الرقم</th>
+            <th>رقم القيد</th>
             <th>إسم الطالب</th>
-            <th>تاريخ البصمة</th>
-            <th>وقت البصمة</th>
+            <th>تاريخ الحضور</th>
+            <th>وقت الحضور</th>
             <th>اسم المادة</th>
+            <th>الفصل الدراسي</th>
+            <th> الحالة </th>
         </tr>
     </thead>
     <tbody>
@@ -163,7 +171,9 @@ while ($row = mysqli_fetch_assoc($result)) {
             <td><?php echo htmlspecialchars($row['Name']); ?></td>
             <td><?php echo htmlspecialchars($row['RecordDate']); ?></td>
             <td><?php echo htmlspecialchars($row['RecordTime']); ?></td>
-            <td><?php echo htmlspecialchars($row['SubjectName']); ?></td>
+            <td><?php echo htmlspecialchars($row['subjectname']); ?></td>
+            <td><?php echo htmlspecialchars($row['classname']); ?></td>
+            <td><?php echo htmlspecialchars($row['AttendanceStatus']); ?></td>
         </tr>
         <?php endforeach; ?>
     </tbody>
