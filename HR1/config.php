@@ -2,6 +2,6 @@
 $mysqlhost='localhost';
 $mysqlusername='root';
 $mysqlpassword=''; 
-$mysqldb='hr2';
+$mysqldb='hr-exams';
 $con=mysqli_connect($mysqlhost,$mysqlusername,$mysqlpassword,$mysqldb);
 ?>

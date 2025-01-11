@@ -57,8 +57,11 @@ if (isset($_GET['ClassID'])) {
     // استعلام للحصول على بيانات الطلاب مع التحقق من وجود سجل للحضور
     $query = "
  SELECT s.Uid, s.Name, s.InRollNumber,
- CASE WHEN s.Date IS NOT NULL THEN 'حاضر' ELSE 'غائب' END AS AttendanceStatus FROM
-  `student_in_class` s LEFT JOIN `records` r ON s.Date = r.RecordTime 
+ CASE 
+ WHEN s.RecordStatus IS NOT NULL
+  THEN 'حاضر'
+  ELSE 'غائب' END AS AttendanceStatus FROM
+  `vrecords` s LEFT JOIN `records` r ON s.Date = r.RecordTime 
     WHERE s.ClassID = '$ClassID'";
         
     $query_run = mysqli_query($con, $query);
