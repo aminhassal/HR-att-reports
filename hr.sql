@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2024 at 08:48 PM
+-- Generation Time: Jan 11, 2025 at 09:38 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,7 +39,9 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`AdminID_PK`, `userName`, `Email`, `password`) VALUES
-(1, 'naziha', 'naziha@gmail.com', '199694');
+(1, 'naziha', 'naziha@gmail.com', '199694'),
+(2, 'amin', NULL, '1234'),
+(3, 'amini', NULL, 'tggggg');
 
 -- --------------------------------------------------------
 
@@ -63,7 +65,8 @@ CREATE TABLE `class` (
 INSERT INTO `class` (`ClassID`, `SubjectID_FK`, `OpenDate`, `IsActive`, `classname`, `LectureName`) VALUES
 (42, 2, '2024-10-25 00:00:00', b'1', 'تجربة', 'محاضرة تجربة'),
 (43, 1, '2024-10-25 00:00:00', b'1', 'تجربة 2', 'خالد'),
-(44, 10, '2024-10-31 00:00:00', b'1', 'فصل 2025 خريف', 'خالد');
+(44, 10, '2024-10-31 00:00:00', b'1', 'فصل 2025 خريف', 'خالد'),
+(45, 10, '2025-01-10 00:00:00', b'1', 'تجربة last', 'محاضرة تجربة');
 
 -- --------------------------------------------------------
 
@@ -85,7 +88,8 @@ CREATE TABLE `courses` (
 INSERT INTO `courses` (`CourseiID`, `ClassID_FK`, `CourseName`, `OpenDate`) VALUES
 (23, 42, 'محاضرة 1', '25-10-2024'),
 (24, 43, 'محاضرة 1', '25-10-2024'),
-(25, 44, 'محاضرة 1 الاولى', '31-10-2024');
+(25, 44, 'محاضرة 1 الاولى', '31-10-2024'),
+(26, 45, 'first test', '10-01-2025');
 
 -- --------------------------------------------------------
 
@@ -121,7 +125,8 @@ CREATE TABLE `infostd` (
 
 INSERT INTO `infostd` (`Uid`, `STD_id`, `Name`, `InRollNumber`, `Phone`, `Password`) VALUES
 (1, 1, 'aminhassal', 111212, 9289198, 0),
-(17, NULL, 'عائشة', 1535789, 89563, 123);
+(17, NULL, 'عائشة', 1535789, 89563, 123),
+(18, NULL, 'amin', 123, 123, 123);
 
 -- --------------------------------------------------------
 
@@ -155,7 +160,28 @@ CREATE TABLE `records` (
 --
 
 INSERT INTO `records` (`RecordID_PK`, `StudentUID`, `RecordStatus`, `RecordDate`, `RecordTime`) VALUES
-(103, 1, 'Check In', '2024-10-25', '20:02:00');
+(103, 1, 'Check In', '2024-10-25', '20:02:00'),
+(104, 18, 'Check In', '2025-01-08', '20:02:00');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `reportview`
+-- (See below for the actual view)
+--
+CREATE TABLE `reportview` (
+`StudentClassID` int(11)
+,`Uid` int(4)
+,`Name` varchar(30)
+,`InRollNumber` int(15)
+,`Date` datetime
+,`RecordStatus` varchar(50)
+,`ClassID` int(11)
+,`classname` varchar(30)
+,`subjectname` varchar(15)
+,`RecordDate` date
+,`RecordTime` varchar(10)
+);
 
 -- --------------------------------------------------------
 
@@ -176,7 +202,9 @@ CREATE TABLE `studentclass` (
 INSERT INTO `studentclass` (`StudentClassID`, `ClassID`, `StdUid_FK`) VALUES
 (19, 42, 1),
 (20, 43, 1),
-(21, 42, 17);
+(24, 44, 1),
+(25, 43, 17),
+(27, 45, 18);
 
 -- --------------------------------------------------------
 
@@ -204,6 +232,7 @@ CREATE TABLE `student_in_class` (
 ,`InRollNumber` int(15)
 ,`ClassID` int(11)
 ,`Date` datetime
+,`classname` varchar(30)
 );
 
 -- --------------------------------------------------------
@@ -255,7 +284,17 @@ CREATE TABLE `vrecords` (
 ,`InRollNumber` int(15)
 ,`Date` datetime
 ,`RecordStatus` varchar(50)
+,`ClassID` int(11)
 );
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `reportview`
+--
+DROP TABLE IF EXISTS `reportview`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `reportview`  AS SELECT `sic`.`StudentClassID` AS `StudentClassID`, `sic`.`Uid` AS `Uid`, `sic`.`Name` AS `Name`, `sic`.`InRollNumber` AS `InRollNumber`, `sic`.`Date` AS `Date`, `r`.`RecordStatus` AS `RecordStatus`, `sic`.`ClassID` AS `ClassID`, `sic`.`classname` AS `classname`, `sr`.`SubjectName` AS `subjectname`, `sr`.`RecordDate` AS `RecordDate`, `sr`.`RecordTime` AS `RecordTime` FROM ((`student_in_class` `sic` left join `records` `r` on(`sic`.`Date` = `r`.`RecordDate`)) join `student_records` `sr` on(`sic`.`Name` = `sr`.`Name`)) ;
 
 -- --------------------------------------------------------
 
@@ -273,7 +312,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `student_in_class`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `student_in_class`  AS SELECT `studentclass`.`StudentClassID` AS `StudentClassID`, `infostd`.`Uid` AS `Uid`, `infostd`.`Name` AS `Name`, `infostd`.`InRollNumber` AS `InRollNumber`, `studentclass`.`ClassID` AS `ClassID`, `class`.`OpenDate` AS `Date` FROM (((`class` join `subjects` on(`class`.`SubjectID_FK` = `subjects`.`SubjectID_PK`)) join `studentclass` on(`class`.`ClassID` = `studentclass`.`ClassID`)) join `infostd` on(`studentclass`.`StdUid_FK` = `infostd`.`Uid`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `student_in_class`  AS SELECT `studentclass`.`StudentClassID` AS `StudentClassID`, `infostd`.`Uid` AS `Uid`, `infostd`.`Name` AS `Name`, `infostd`.`InRollNumber` AS `InRollNumber`, `studentclass`.`ClassID` AS `ClassID`, `class`.`OpenDate` AS `Date`, `class`.`classname` AS `classname` FROM (((`class` join `subjects` on(`class`.`SubjectID_FK` = `subjects`.`SubjectID_PK`)) join `studentclass` on(`class`.`ClassID` = `studentclass`.`ClassID`)) join `infostd` on(`studentclass`.`StdUid_FK` = `infostd`.`Uid`)) ;
 
 -- --------------------------------------------------------
 
@@ -291,7 +330,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vrecords`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vrecords`  AS SELECT `sic`.`StudentClassID` AS `StudentClassID`, `sic`.`Uid` AS `Uid`, `sic`.`Name` AS `Name`, `sic`.`InRollNumber` AS `InRollNumber`, `sic`.`Date` AS `Date`, `r`.`RecordStatus` AS `RecordStatus` FROM (`student_in_class` `sic` left join `records` `r` on(`sic`.`Date` = `r`.`RecordDate`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vrecords`  AS SELECT `sic`.`StudentClassID` AS `StudentClassID`, `sic`.`Uid` AS `Uid`, `sic`.`Name` AS `Name`, `sic`.`InRollNumber` AS `InRollNumber`, `sic`.`Date` AS `Date`, `r`.`RecordStatus` AS `RecordStatus`, `sic`.`ClassID` AS `ClassID` FROM (`student_in_class` `sic` left join `records` `r` on(`sic`.`Date` = `r`.`RecordDate`)) ;
 
 --
 -- Indexes for dumped tables
@@ -367,19 +406,19 @@ ALTER TABLE `subjects`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `AdminID_PK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `AdminID_PK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `ClassID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `ClassID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `CourseiID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `CourseiID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `devices`
@@ -391,7 +430,7 @@ ALTER TABLE `devices`
 -- AUTO_INCREMENT for table `infostd`
 --
 ALTER TABLE `infostd`
-  MODIFY `Uid` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `Uid` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `masterofcourse`
@@ -403,13 +442,13 @@ ALTER TABLE `masterofcourse`
 -- AUTO_INCREMENT for table `records`
 --
 ALTER TABLE `records`
-  MODIFY `RecordID_PK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `RecordID_PK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `studentclass`
 --
 ALTER TABLE `studentclass`
-  MODIFY `StudentClassID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `StudentClassID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `subjects`
