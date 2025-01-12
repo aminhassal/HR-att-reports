@@ -8,9 +8,12 @@ $tstInfo = new DAL_INF();
 $ret = $zk->connect();
 
 try {
-    $user = $zk->getUser();
+    $users = $zk->getUser();
     sleep(1);
-    foreach ($user as $uid => $userdata) :
+    
+    $allUserData = [];
+
+    foreach ($users as $uid => $userdata) :
         if ($userdata[2] == LEVEL_ADMIN) {
             $role = 'ADMIN';
         } elseif ($userdata[2] == LEVEL_USER) {
@@ -18,17 +21,28 @@ try {
         } else {
             $role = 'Unknown';
         }
+
+        $allUserData[] = [
+            'id' => $userdata[0],
+            'name' => $userdata[1],
+            'role' => $role,
+            'other_info' => $userdata[3],
+        ];
     endforeach;
-?>
-<?php
-        $tstdeleteInfo = new DAL();
-        $tstdeleteInfo->deleteinfos();
-        $tstInfo->sqlInsertoinfo($uid, $userdata[0], $userdata[1], $userdata[3]);
+
+    $tstdeleteInfo = new DAL();
+    $tstdeleteInfo->deleteinfos();
+
+    foreach ($allUserData as $userData) {
+        $tstInfo->sqlInsertoinfo($userData['id'], $userData['id'], $userData['name'], $userData['other_info']);
+    }
+
 } catch (Exception $e) {
     header("HTTP/1.0 404 Not Found");
     header('HTTP', true, 500); // 500 internal server error                
 }
 ?>
+//----------------------------------
 <?php
 $attendance = $zk->getAttendance();
 sleep(1);
@@ -45,19 +59,14 @@ foreach ($attendance as $idx => $attendancedata) {
     echo "Index: $idx, Status: $status\n";
 }
 ?>
-    <tr>
-        <td><?php echo $idx ?></td>
-        <td><?php echo $attendancedata[0] ?></td>
-        <td><?php echo $attendancedata[1] ?></td>
-        <td><?php echo $status ?></td>
-        <td><?php echo date('Y-m-d', strtotime($attendancedata[3])) ?></td>
-        <td><?php echo date("H:i:s", strtotime($attendancedata[3])) ?></td>
-    </tr>
+
 <?php
-    $tst->sqlInserto(
+   $tst->sqlInserto(
         $attendancedata[1],
         $status,
         date('Y-m-d', strtotime($attendancedata[3])),
         date("H:i:s", strtotime($attendancedata[3]))
     );
+    header("Location: " . $_SERVER['HTTP_REFERER']);
+    exit()
 ?>

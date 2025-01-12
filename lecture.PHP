@@ -75,7 +75,7 @@
                                  <a class="nav-link" href="lecture.php">محاضرات</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="Exams.php">امتحانات</a>
+                              <a class="nav-link" href="./exams/exams.php">إمتحانات</a>
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="./Reports/Reports_.php">تقارير</a>
