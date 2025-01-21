@@ -330,7 +330,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vrecords`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vrecords`  AS SELECT `sic`.`StudentClassID` AS `StudentClassID`, `sic`.`Uid` AS `Uid`, `sic`.`Name` AS `Name`, `sic`.`InRollNumber` AS `InRollNumber`, `sic`.`Date` AS `Date`, `r`.`RecordStatus` AS `RecordStatus`, `sic`.`ClassID` AS `ClassID` FROM (`student_in_class` `sic` left join `records` `r` on(`sic`.`Date` = `r`.`RecordDate`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vrecords`  AS select `sic`.`StudentClassID` AS `StudentClassID`,`sic`.`Uid` AS `Uid`,`sic`.`Name` AS `Name`,`sic`.`InRollNumber` AS `InRollNumber`,`sic`.`Date` AS `Date`,`r`.`RecordStatus` AS `RecordStatus`,`sic`.`ClassID` AS `ClassID` from (`hr-class`.`student_in_class` `sic` left join `hr-class`.`records` `r` on(`sic`.`Date` = `r`.`RecordDate` and `sic`.`Uid` = `r`.`StudentUID`)) ;
 
 --
 -- Indexes for dumped tables
