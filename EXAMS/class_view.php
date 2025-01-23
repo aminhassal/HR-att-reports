@@ -48,7 +48,7 @@
 
                             <div class="card-header">
                                 <h4 align="right">
-                                    <a href="lecture.PHP" class="btn btn-danger"> &#8594; رجوع</a>
+                                    <a href="exams.php" class="btn btn-danger"> &#8594; رجوع</a>
                                 </h4>
                             </div>
 
