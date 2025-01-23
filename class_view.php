@@ -46,11 +46,11 @@
                         <input type="hidden" name="ClassID" value=<?php echo $_GET['ClassID']; ?>>
                         <div class="mb-3">
 
-                        <div class="card-header">
-                        <h4 align="right">
-                            <a  href="lecture.PHP" class="btn btn-danger"> &#8594; رجوع</a>
-                        </h4>
-                    </div>
+                            <div class="card-header">
+                                <h4 align="right">
+                                    <a href="lecture.PHP" class="btn btn-danger"> &#8594; رجوع</a>
+                                </h4>
+                            </div>
 
                             <label for="fname"> المحاضرة:</label><br>
                             <input type="text" name="fname"><br>
@@ -91,7 +91,7 @@
                                         <td><?= $student['CourseName']; ?></td>
                                         <td><?= $student['OpenDate']; ?></td>
                                         <td>
-                                            <a href="Course_view.php?ClassID=<?php echo $_GET['ClassID'];?>"
+                                            <a href="Course_view.php?ClassID=<?= $_GET['ClassID']; ?>&CourseiID=<?= $student['CourseiID']; ?>"
                                                 class="btn btn-info btn-sm">عرض</a>
                                         </td>
                                     </tr>
