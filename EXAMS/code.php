@@ -9,7 +9,7 @@ if(isset($_POST['savecourses']))
 {
     $ClassID_FK =mysqli_real_escape_string($con, $_POST['ClassID']);
     $NameCourse = mysqli_real_escape_string($con, $_POST['fname']);
-    $Date = date("d-m-Y");
+    $Date = date("Y-m-d");
 
     $query = "INSERT INTO courses
     (CourseName,OpenDate,ClassID_FK)VALUE

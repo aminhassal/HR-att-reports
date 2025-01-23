@@ -46,18 +46,18 @@
                         <input type="hidden" name="ClassID" value=<?php echo $_GET['ClassID']; ?>>
                         <div class="mb-3">
 
-                        <div class="card-header">
-                        <h4 align="right">
-                            <a  href="exams.PHP" class="btn btn-danger"> &#8594; رجوع</a>
-                        </h4>
-                    </div>
+                            <div class="card-header">
+                                <h4 align="right">
+                                    <a href="lecture.PHP" class="btn btn-danger"> &#8594; رجوع</a>
+                                </h4>
+                            </div>
 
-                            <label for="fname"> الإمتحانات : </label><br>
+                            <label for="fname"> المحاضرة:</label><br>
                             <input type="text" name="fname"><br>
                         </div>
                         <div class="mb-3">
                             <button method="POST" type="submit" name="savecourses" class="btn btn-dark">إضافة
-                                إمتحان</button>
+                                محاضرة</button>
                         </div>
                         <div>
                             <a href="Students_InClass.PHP?ClassID=<?= $_GET['ClassID']; ?>"
@@ -69,7 +69,7 @@
                                 <thead>
                                     <tr>
                                         <th>الرقم</th>
-                                        <th>الامتحان </th>
+                                        <th>المحاضرة </th>
                                         <th> تاريخ </th>
                                         <th>الإجراءات</th>
                                     </tr>
@@ -91,7 +91,7 @@
                                         <td><?= $student['CourseName']; ?></td>
                                         <td><?= $student['OpenDate']; ?></td>
                                         <td>
-                                            <a href="Course_view.php?ClassID=<?php echo $_GET['ClassID'];?>"
+                                            <a href="Course_view.php?ClassID=<?= $_GET['ClassID']; ?>&CourseiID=<?= $student['CourseiID']; ?>"
                                                 class="btn btn-info btn-sm">عرض</a>
                                         </td>
                                     </tr>

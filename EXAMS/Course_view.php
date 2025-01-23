@@ -51,8 +51,9 @@ require 'config.php';
                             </thead>
                             <tbody>
                             <?php
-if (isset($_GET['ClassID'])) {
+if (isset($_GET['ClassID']) && isset($_GET['CourseiID'])) {
     $ClassID = mysqli_real_escape_string($con, $_GET['ClassID']);
+    $CourseiID = mysqli_real_escape_string($con, $_GET['CourseiID']);
     
     // استعلام للحصول على بيانات الطلاب مع التحقق من وجود سجل للحضور
     $query = "
@@ -61,8 +62,8 @@ if (isset($_GET['ClassID'])) {
  WHEN s.RecordStatus IS NOT NULL
   THEN 'حاضر'
   ELSE 'غائب' END AS AttendanceStatus FROM
-  `vrecords` s LEFT JOIN `records` r ON s.Date = r.RecordTime 
-    WHERE s.ClassID = '$ClassID'";
+  `studentattends` s LEFT JOIN `records` r ON s.Date = r.RecordTime 
+    WHERE s.ClassID = '$ClassID' AND s.CourseiID = '$CourseiID' ";
         
     $query_run = mysqli_query($con, $query);
 
