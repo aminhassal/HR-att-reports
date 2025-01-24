@@ -19,7 +19,7 @@ $end_date = isset($_POST['end_date']) ? $_POST['end_date'] : '';
 $subject_name = isset($_POST['subject_name']) ? $_POST['subject_name'] : ''; // تغيير هنا
 
 // Prepare SQL query with filters
-$query = "SELECT `StudentClassID`, `Uid`, `Name`, `InRollNumber`, `Date`, `RecordStatus`, `ClassID`, `classname`, `subjectname`, `RecordDate`, `RecordTime`
+$query = "SELECT `StudentClassID`, `Uid`, `Name`, `InRollNumber`, `Date`, `RecordStatus`, `ClassID`, `classname`, `subjectnames`, `RecordDates`, `RecordTimes`
 ,CASE 
  WHEN RecordStatus IS NOT NULL
   THEN ' حاضر'
@@ -30,19 +30,19 @@ $params = [];
 
 // Add conditions if dates are provided
 if ($start_date) {
-    $query .= " AND STR_TO_DATE(RecordDate, '%Y-%m-%d') >= :start_date";
+    $query .= " AND STR_TO_DATE(RecordDates, '%Y-%m-%d') >= :start_date";
     $params[':start_date'] = $start_date;
 }
 
 if ($end_date) {
-    $query .= " AND STR_TO_DATE(RecordDate, '%Y-%m-%d') <= :end_date";
+    $query .= " AND STR_TO_DATE(RecordDates, '%Y-%m-%d') <= :end_date";
     $params[':end_date'] = $end_date;
 }
 
 // Add condition for subject if provided
 if ($subject_name) {
-    $query .= " AND SubjectName = :subject_name"; // استخدام SubjectName
-    $params[':subject_name'] = $subject_name;
+    $query .= " AND subjectnames = :subjectnames"; // استخدام SubjectName
+    $params[':subjectnames'] = $subject_name;
 }
 
 $stmt = $pdo->prepare($query);
@@ -169,9 +169,9 @@ while ($row = mysqli_fetch_assoc($result)) {
         <tr>
             <td><?php echo htmlspecialchars($row['InRollNumber']); ?></td>
             <td><?php echo htmlspecialchars($row['Name']); ?></td>
-            <td><?php echo htmlspecialchars($row['RecordDate']); ?></td>
-            <td><?php echo htmlspecialchars($row['RecordTime']); ?></td>
-            <td><?php echo htmlspecialchars($row['subjectname']); ?></td>
+            <td><?php echo htmlspecialchars($row['RecordDates']); ?></td>
+            <td><?php echo htmlspecialchars($row['RecordTimes']); ?></td>
+            <td><?php echo htmlspecialchars($row['subjectnames']); ?></td>
             <td><?php echo htmlspecialchars($row['classname']); ?></td>
             <td><?php echo htmlspecialchars($row['AttendanceStatus']); ?></td>
         </tr>

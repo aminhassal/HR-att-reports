@@ -83,6 +83,9 @@ html {
                               <li class="nav-item">
                                  <a class="nav-link" href="./Reports/Reports_.php">تقارير</a>
                               </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="./Reports/statics.php">احصائيات</a>
+                              </li>
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="../Old_index1.php"> السابق</a>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2025 at 11:17 PM
+-- Generation Time: Jan 24, 2025 at 08:22 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -81,7 +81,9 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`CourseiID`, `ClassID_FK`, `CourseName`, `OpenDate`) VALUES
-(30, 46, 'محاضرة 3', '2025-01-21');
+(30, 46, 'محاضرة 3', '2025-01-21'),
+(33, 46, '3', '2025-01-24'),
+(34, 46, 'محاضرة 1 الاولى', '2025-01-24');
 
 -- --------------------------------------------------------
 
@@ -154,7 +156,8 @@ CREATE TABLE `records` (
 --
 
 INSERT INTO `records` (`RecordID_PK`, `StudentUID`, `RecordStatus`, `RecordDate`, `RecordTime`) VALUES
-(120, 2, 'Check In', '2025-01-21', '23:14:51');
+(120, 2, 'Check In', '2025-01-21', '23:14:51'),
+(121, 5, 'Check In', '2025-01-24', '23:14:51');
 
 -- --------------------------------------------------------
 
@@ -165,15 +168,15 @@ INSERT INTO `records` (`RecordID_PK`, `StudentUID`, `RecordStatus`, `RecordDate`
 CREATE TABLE `reportview` (
 `StudentClassID` int(11)
 ,`Uid` int(4)
-,`Name` varchar(30)
+,`NAME` varchar(30)
 ,`InRollNumber` int(15)
-,`Date` varchar(30)
+,`DATE` varchar(30)
 ,`RecordStatus` varchar(50)
+,`RecordDates` mediumtext
+,`RecordTimes` mediumtext
+,`SubjectNames` mediumtext
 ,`ClassID` int(11)
 ,`classname` varchar(30)
-,`subjectname` varchar(15)
-,`RecordDate` date
-,`RecordTime` varchar(10)
 );
 
 -- --------------------------------------------------------
@@ -306,7 +309,7 @@ CREATE TABLE `vrecords` (
 --
 DROP TABLE IF EXISTS `reportview`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `reportview`  AS SELECT `sic`.`StudentClassID` AS `StudentClassID`, `sic`.`Uid` AS `Uid`, `sic`.`Name` AS `Name`, `sic`.`InRollNumber` AS `InRollNumber`, `sic`.`Date` AS `Date`, `r`.`RecordStatus` AS `RecordStatus`, `sic`.`ClassID` AS `ClassID`, `sic`.`classname` AS `classname`, `sr`.`SubjectName` AS `subjectname`, `sr`.`RecordDate` AS `RecordDate`, `sr`.`RecordTime` AS `RecordTime` FROM ((`student_in_class` `sic` left join `records` `r` on(`sic`.`Date` = `r`.`RecordDate`)) join `student_records` `sr` on(`sic`.`Name` = `sr`.`Name`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `reportview`  AS SELECT `sic`.`StudentClassID` AS `StudentClassID`, `sic`.`Uid` AS `Uid`, `sic`.`Name` AS `NAME`, `sic`.`InRollNumber` AS `InRollNumber`, `sic`.`Date` AS `DATE`, `r`.`RecordStatus` AS `RecordStatus`, group_concat(distinct `r`.`RecordDate` order by `r`.`RecordDate` ASC separator ',') AS `RecordDates`, group_concat(distinct `r`.`RecordTime` order by `r`.`RecordDate` ASC separator ',') AS `RecordTimes`, group_concat(distinct `sr`.`SubjectName` order by `sr`.`SubjectName` ASC separator ',') AS `SubjectNames`, `sic`.`ClassID` AS `ClassID`, `sic`.`classname` AS `classname` FROM ((`student_in_class` `sic` left join `records` `r` on(`sic`.`Uid` = `r`.`StudentUID` and `sic`.`Date` = `r`.`RecordDate`)) left join `student_records` `sr` on(`sic`.`Name` = `sr`.`Name` and `sic`.`Date` = `sr`.`RecordDate`)) GROUP BY `sic`.`StudentClassID`, `sic`.`Uid`, `sic`.`Name`, `sic`.`InRollNumber`, `sic`.`Date`, `sic`.`ClassID`, `sic`.`classname` ORDER BY `sic`.`Name` ASC ;
 
 -- --------------------------------------------------------
 
@@ -439,7 +442,7 @@ ALTER TABLE `class`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `CourseiID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `CourseiID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `devices`
@@ -463,7 +466,7 @@ ALTER TABLE `masterofcourse`
 -- AUTO_INCREMENT for table `records`
 --
 ALTER TABLE `records`
-  MODIFY `RecordID_PK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+  MODIFY `RecordID_PK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
 -- AUTO_INCREMENT for table `studentclass`

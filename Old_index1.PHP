@@ -76,6 +76,9 @@
                                  <a class="nav-link" href="./Reports/Reports_.php">تقارير</a>
                               </li>
                               <li class="nav-item">
+                                 <a class="nav-link" href="./Reports/statics.php">احصائيات</a>
+                              </li>
+                              <li class="nav-item">
                                  <a class="nav-link" href="./exams/exams.php">إمتحانات</a>
                               </li>
                               <li class="nav-item">

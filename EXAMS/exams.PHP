@@ -13,7 +13,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
    <!-- site metas -->
-   <title>إمتحانات</title>
+   <title>محاضرات</title>
    <meta name="keywords" content="">
    <meta name="description" content="">
    <meta name="author" content="">
@@ -65,11 +65,15 @@
                               <li class="nav-item">
                                  <a class="nav-link" href="register.php">تسجيل طالب</a>
                               </li>
+                             
                               <li class="nav-item active">
-                                 <a class="nav-link" href="exams.php">إمتحانات</a>
+                              <a class="nav-link" href="./exams/exams.php">إمتحانات</a>
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="./Reports/Reports_.php">تقارير</a>
+                              </li>                              
+                              <li class="nav-item">
+                                 <a class="nav-link" href="./Reports/statics.php">احصائيات</a>
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="../Old_index1.php"> السابق</a>
@@ -79,7 +83,11 @@
                         </div>
                      </nav>
                   </div>
-                  
+                 
+                  </div>
+               </div>
+            </div>
+         </div>
    </header>
    <!-- end header inner -->
    <!-- end header -->
@@ -89,7 +97,7 @@
          <div class="row">
             <div class="col-md-12">
                <div class="title">
-                  <h2>إمتحانات</h2>
+                  <h2>محاضرات</h2>
                </div>
             </div>
          </div>

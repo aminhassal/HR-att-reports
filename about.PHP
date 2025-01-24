@@ -77,6 +77,9 @@
                                  <a class="nav-link" href="./Reports/Reports_.php">تقارير</a>
                               </li>
                               <li class="nav-item">
+                                 <a class="nav-link" href="./Reports/statics.php">احصائيات</a>
+                              </li>
+                              <li class="nav-item">
                                  <a class="nav-link" href="./exams/exams.php">إمتحانات</a>
                               </li>
                               <li class="nav-item">
@@ -87,14 +90,7 @@
                         </div>
                      </nav>
                   </div>
-                  <div class="col-md-2">
-                     <ul class="social_icon">
-                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                     </ul>
-                  </div>
+                 
                </div>
             </div>
          </div>
